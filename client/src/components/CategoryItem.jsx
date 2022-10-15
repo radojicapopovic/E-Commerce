@@ -1,24 +1,17 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Container = styled.div`
   flex: 1;
   margin: 3px;
   height: 70vh;
   position: relative;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 const Image = styled.img`
-  display: flex;
-  wirth: 75%;
-  height: 75%;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  position: absolute;
 
-  
 `;
 
 const Info = styled.div`
@@ -34,29 +27,29 @@ const Info = styled.div`
 `;
 
 const Title = styled.h1`
-  color: white;
-  margin-bottom: 20px;
-  font-weight: 600;
+    color:white;
+    margin-bottom: 20px;
 `;
 
 const Button = styled.button`
-  border: none;
-  padding: 10px;
-  background-color: white;
-  color: gray;
-  cursor: pointer;
+    border:none;
+    padding: 10px;
+    background-color: white;
+    color:gray;
+    cursor: pointer;
+    font-weight: 600;
 `;
 
-function CategoryItem({item}) {
+const CategoryItem = ({ item }) => {
   return (
     <Container>
-        <Image src={item.img}></Image>
-        <Info>
-          <Title>{item.title}</Title>
-          <Button>SHOP NOW</Button>
-        </Info>
+      <Image src={item.img} />
+      <Info>
+        <Title>{item.title}</Title>
+        <Button>SHOP NOW</Button>
+      </Info>
     </Container>
-  )
-}
+  );
+};
 
-export default CategoryItem
+export default CategoryItem;

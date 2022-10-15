@@ -2,6 +2,7 @@ import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components"
 import Announcment from "../components/Announcment";
 import Navbar from "../components/Navbar";
+import { useSelector} from "react-redux";
 
 const Container = styled.div`
 
@@ -148,6 +149,7 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+    const cart = useSelector(state => state.cart)
   return (
     <Container>
         <Navbar/>
@@ -164,41 +166,27 @@ const Cart = () => {
             </Top>
             <Bottom>
                 <Info>
+                {cart.products.map(product=>(
+
                     <Product>
-                        <ProductDetail>
-                            <Image src=""/>
-                            <Details>
-                                <ProductName><b>Product:</b> --------- </ProductName>
-                                <ProductId><b>ID:</b> --------- </ProductId>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 1300</ProductPrice>
-                        </PriceDetail>
-                    </Product>
+                    <ProductDetail>
+                        <Image src={product.img}/>
+                        <Details>
+                            <ProductName><b>{product.title}:</b> --------- </ProductName>
+                            <ProductId><b>{product._id}</b> --------- </ProductId>
+                        </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                        <ProductAmountContainer>
+                            <Add/>
+                            <ProductAmount>{product.quantity}</ProductAmount>
+                            <Remove/>
+                        </ProductAmountContainer>
+                        <ProductPrice>$ {product.price * product.quantity}</ProductPrice>
+                    </PriceDetail> 
+                </Product>
+                ))};
                     <Hr/>
-                    <Product>
-                        <ProductDetail>
-                            <Image src=""/>
-                            <Details>
-                                <ProductName><b>Product:</b> --------- </ProductName>
-                                <ProductId><b>ID:</b> --------- </ProductId>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 1300</ProductPrice>
-                        </PriceDetail>
-                    </Product>
                 </Info>
                 <Summary>
                     <SummaryTitle>

@@ -14,7 +14,9 @@ const Container = styled.div`
 const Announcment = () => {
   return (
     <Container>
-        ------TEXT------
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        Fugiat sint mollitia necessitatibus nobis et, assumenda quasi facilis nam quia eveniet aspernatur, totam culpa veniam. 
+        Commodi ab assumenda officiis animi ipsa.
     </Container>
   )
 }

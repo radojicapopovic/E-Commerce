@@ -1,7 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 import Announcment from "../components/Announcment";
 import Navbar from "../components/Navbar";
+import { publicRequest } from "../requestMethods";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/cartRedux";
 
 const Container = styled.div`
 
@@ -77,25 +82,55 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatch();
+
+    useEffect (()=>{
+        const getProduct = async ()=> {
+            try{
+                const res = await publicRequest.get("/products/find/" + id);
+                setProduct(res.data);
+            }catch{}
+        };
+        getProduct();
+    }, [id]);
+
+    const handleQuantity = (type) =>{
+        if(type === "dec"){
+            setQuantity(quantity -1);
+        }else {
+            setQuantity(quantity +1);
+        }
+    };
+
+    const handleClick = () => {
+        dispatch(
+            addProduct({ ...product, quantity})
+        );
+    };
+
   return (
     <Container>
         <Navbar/>
         <Announcment/>
         <Wrapper>
             <ImgContainer>
-                <Image src=""/>
+                <Image src={product.img}/>
             </ImgContainer>
             <InfoContainer>
-                <Title>MacBook</Title>
-                <Desc> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aspernatur fugit recusandae quidem! Autem natus atque voluptates asperiores. Iusto saepe voluptatum non quod alias iste repellat quia dolores itaque officia!</Desc>
-                <Price>$ 200</Price>
+                <Title>{product.title}</Title>
+                <Desc>{product.desc}</Desc>
+                <Price>$ {product.price}</Price>
                 <AddContainer>
                     <AmountContainer>
-                        <Remove/>
-                        <Amount>1</Amount>
-                        <Add/>
+                        <Remove onClick={()=>handleQuantity("dec")}/>
+                        <Amount>{quantity}</Amount>
+                        <Add onClick={()=>handleQuantity("inc")}/>
                     </AmountContainer>
-                    <Button>ADD TO CART</Button>
+                    <Button onClick={handleClick}>ADD TO CART</Button>
                 </AddContainer>
             </InfoContainer>
         </Wrapper>

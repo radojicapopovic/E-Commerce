@@ -27,19 +27,19 @@ export const sliderItems = [
       id: 1,
       img: "https://cdn.shopify.com/s/files/1/0183/5769/products/M2-MacBook-2022---_0001s_0003_macbook-air-silver-front-220615_600x600_crop_center.png?v=1656571782",
       title: "Mac",
-      cat:"women"
+      cat:"macs"
     },
     {
       id: 2,
       img: "https://cdn.shopify.com/s/files/1/0630/4025/8266/products/76E3742B-0AB6-4CEF-ABD6-CF8E7CB6E147.png?v=1662708242",
       title: "iPhone",
-      cat:"coat"
+      cat:"phones"
     },
     {
       id: 3,
       img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPLT3ref_VW_PF+watch-45-alum-midnight-nc-8s_VW_PF_WF_SI?wid=2000&hei=2000&fmt=png-alpha&.v=1660778411615,1661969013298",
       title: "Watch",
-      cat:"jeans"
+      cat:"watches"
     },
   ];
 
